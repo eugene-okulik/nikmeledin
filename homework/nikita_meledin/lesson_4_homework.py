@@ -30,3 +30,4 @@ my_dict['set'].remove(3)                           # Удаляю элемент
 print(my_dict['set'])
 
 print(my_dict)
+
