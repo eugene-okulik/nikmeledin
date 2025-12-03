@@ -14,6 +14,3 @@ for word in words:
     else:
         fin_text.append(word + 'ing')
 print(' '.join(fin_text))
-
-
-
