@@ -33,7 +33,8 @@ class Bouquet:
         return sum(f.price for f in self.flowers)
 
     def get_wilting_time(self):
-        if not self.flowers: return 0
+        if not self.flowers:
+            return 0
         return sum(f.lifespan for f in self.flowers) / len(self.flowers)
 
     def sort_by(self, parameter):
