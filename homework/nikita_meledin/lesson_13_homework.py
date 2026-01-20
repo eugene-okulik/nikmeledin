@@ -19,7 +19,7 @@ with open(homework_file_path, 'r') as file:
         if index == '1':
             print(f'Дата на неделю позже: {date_obj + timedelta(weeks=1)}')
         elif index == '2':
-            print(f'Какой день недели: {date_obj.strftime('%A')}')
+            print(f'Какой день недели: {date_obj.strftime("%A")}')
         elif index == '3':
             diff = datetime.now() - date_obj
             print(f'Сколько дней назад была эта дата: {diff.days}')
