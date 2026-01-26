@@ -44,8 +44,10 @@ for subject in subjects:
 lesson_ids = []
 for subject_id in subject_ids:
     for i in range(2):
-        cursor.execute("INSERT INTO lessons (subject_id, topic, lesson_date) VALUES (%s, %s, %s)",
-                      (subject_id, f'Занятие {i+1}', date.today()))
+        cursor.execute(
+            "INSERT INTO lessons (subject_id, topic, lesson_date) VALUES (%s, %s, %s)",
+            (subject_id, f'Занятие {i+1}', date.today())
+        )
         lesson_ids.append(cursor.lastrowid)
 
 
@@ -55,21 +57,29 @@ cursor.executemany("INSERT INTO marks (student_id, lesson_id, mark) VALUES (%s, 
 db.commit()
 
 
-cursor.execute("SELECT m.mark, l.topic, s.name FROM marks m JOIN lessons l "
-               "ON m.lesson_id = l.id JOIN subjects s ON l.subject_id = s.id WHERE m.student_id = %s",
-               (student_id,))
+cursor.execute("""
+    SELECT m.mark, l.topic, s.name
+    FROM marks m
+    JOIN lessons l ON m.lesson_id = l.id
+    JOIN subjects s ON l.subject_id = s.id
+    WHERE m.student_id = %s
+""", (student_id,))
 print("Все оценки студента:")
 for row in cursor.fetchall():
     print(f"{row['name']}: {row['topic']} - {row['mark']}")
 
-cursor.execute("SELECT b.title, b.author FROM book_loans bl JOIN books b "
-               "ON bl.book_id = b.id WHERE bl.student_id = %s AND bl.return_date IS NULL", (student_id,))
+cursor.execute("""
+    SELECT b.title, b.author
+    FROM book_loans bl
+    JOIN books b ON bl.book_id = b.id
+    WHERE bl.student_id = %s AND bl.return_date IS NULL
+""", (student_id,))
 print("\nКниги у студента:")
 for row in cursor.fetchall():
     print(f"'{row['title']}' - {row['author']}")
 
 cursor.execute("""
-    SELECT s.first_name, s.last_name, g.name as group_name, b.title as book_title, 
+    SELECT s.first_name, s.last_name, g.name as group_name, b.title as book_title,
            subj.name as subject_name, m.mark
     FROM students s
     LEFT JOIN `groups` g ON s.group_id = g.id
@@ -83,8 +93,9 @@ cursor.execute("""
 
 print("\nВся информация о студенте:")
 for row in cursor.fetchall():
-    print(f"{row['first_name']} {row['last_name']} | Группа: {row['group_name']} | Книга: {row['book_title'] or 'нет'} "
-          f"| Предмет: {row['subject_name'] or 'нет'} | Оценка: {row['mark'] or 'нет'}")
+    print(f"{row['first_name']} {row['last_name']} | Группа: {row['group_name']} | "
+          f"Книга: {row['book_title'] or 'нет'} | Предмет: {row['subject_name'] or 'нет'} | "
+          f"Оценка: {row['mark'] or 'нет'}")
 
 cursor.close()
 db.close()
