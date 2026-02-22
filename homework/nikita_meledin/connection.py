@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def connect():
     try:
         db = mysql.connector.connect(
@@ -13,8 +14,8 @@ def connect():
             port=os.getenv('DB_PORT'),
             database=os.getenv('DB_NAME')
         )
-        print("Подключились к БД")
+        print("Подключились к базе")
         return db
-    except:
-        print("Ошибка подключения к БД")
+    except Exception:  # Не просто except:
+        print("Ошибка подключения")
         return None
