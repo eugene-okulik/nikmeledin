@@ -82,6 +82,7 @@ def delete_object():
     get_response = requests.get(f"http://objapi.course.qa-practice.com/object/{object_id}")
     assert get_response.status_code == 404, 'Object should not exist'
 
+
 get_all_object()
 get_object_id()
 post_object()
