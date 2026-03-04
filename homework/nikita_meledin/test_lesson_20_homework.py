@@ -74,7 +74,6 @@ def test_post_object(name, color, size):
     requests.delete(f"http://objapi.course.qa-practice.com/object/{response.json()['id']}")
 
 
-
 @pytest.mark.medium
 def test_put_object(new_post_id):
     body = {
