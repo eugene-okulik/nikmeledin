@@ -51,9 +51,9 @@ def test_get_object_id(new_post_id):
 
 @pytest.mark.critical
 @pytest.mark.parametrize('name, color, size', [
-    ('one', 'red', 'small'),
-    ('two', 'green', 'average'),
-    ('three', 'blue', 'medium')
+    ('one', 'red', ''),
+    ('two', 123, '!@$!$#@%@'),
+    ('three', 'blue', True)
 ])
 def test_post_object(name, color, size):
     body = {
@@ -72,6 +72,7 @@ def test_post_object(name, color, size):
     response_body.pop('id')
     assert response_body == body
     requests.delete(f"http://objapi.course.qa-practice.com/object/{response.json()['id']}")
+
 
 
 @pytest.mark.medium
