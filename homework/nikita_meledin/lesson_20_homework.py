@@ -5,11 +5,11 @@ import pytest
 @pytest.fixture
 def new_post_id():
     body = {
-    "name": "Test Object",
-    "data": {
-        "color": "red",
-        "size": "medium"
-    }
+        "name": "Test Object",
+        "data": {
+            "color": "red",
+            "size": "medium"
+        }
     }
     response = requests.post(
         "http://objapi.course.qa-practice.com/object",
@@ -50,16 +50,18 @@ def test_get_object_id(new_post_id):
 
 
 @pytest.mark.critical
-@pytest.mark.parametrize('name, color, size', [('one', 'red', 'small'),
-                                              ('two','green', 'average'),
-                                              ('three', 'blue', 'medium')])
+@pytest.mark.parametrize('name, color, size', [
+    ('one', 'red', 'small'),
+    ('two', 'green', 'average'),
+    ('three', 'blue', 'medium')
+])
 def test_post_object(name, color, size):
     body = {
-    "name": name,
-    "data": {
-        "color": color,
-        "size": size
-    }
+        "name": name,
+        "data": {
+            "color": color,
+            "size": size
+        }
     }
     response = requests.post(
         "http://objapi.course.qa-practice.com/object",
@@ -75,11 +77,11 @@ def test_post_object(name, color, size):
 @pytest.mark.medium
 def test_put_object(new_post_id):
     body = {
-    "name": "Test Object",
-    "data": {
-        "color": "green",
-        "size": "medium"
-    }
+        "name": "Test Object",
+        "data": {
+            "color": "green",
+            "size": "medium"
+        }
     }
     response = requests.put(
         f"http://objapi.course.qa-practice.com/object/{new_post_id}",
