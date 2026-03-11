@@ -1,5 +1,4 @@
 import pytest
-
 from test_api_nikmeledin.endpoints.base_endpoint import BaseEndpoint
 from test_api_nikmeledin.endpoints.create_object import CreateObject
 from test_api_nikmeledin.endpoints.delete_object import DeleteObject

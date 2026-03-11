@@ -1,6 +1,5 @@
 import requests
 import allure
-
 from test_api_nikmeledin.endpoints.base_endpoint import BaseEndpoint
 
 
@@ -14,7 +13,6 @@ class UpdateObject(BaseEndpoint):
         else:
             self.json = None
         return self.response
-
 
     @allure.step('Checking that the object has been updated')
     def check_updated_object(self, expected_payload):
