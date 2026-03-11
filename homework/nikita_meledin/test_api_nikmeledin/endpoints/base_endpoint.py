@@ -20,10 +20,3 @@ class BaseEndpoint():
     @allure.step('Checking that JSON is present in the response')
     def check_json(self):
         assert self.json is not None
-
-
-
-
-
-
-
