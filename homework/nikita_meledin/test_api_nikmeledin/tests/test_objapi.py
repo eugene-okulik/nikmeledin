@@ -1,5 +1,6 @@
 import pytest
 
+
 payload = {"data": {"color": "color", "size": "size"}, "name": "name"}
 new_payload = {"name": 'name2', "data": {"color": 'color2', "size": 'size2'}}
 patch_payload = {"name": "test"}
