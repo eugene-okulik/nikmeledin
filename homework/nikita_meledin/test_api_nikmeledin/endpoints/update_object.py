@@ -19,3 +19,7 @@ class UpdateObject(BaseEndpoint):
         updated_without_id = self.json.copy()
         updated_without_id.pop('id')
         assert updated_without_id == expected_payload
+
+    @allure.step('Check status code after update')
+    def check_status_code_after_update(self):
+        assert self.response.status_code == 200
