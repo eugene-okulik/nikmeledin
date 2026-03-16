@@ -16,9 +16,7 @@ class UpdateObject(BaseEndpoint):
 
     @allure.step('Checking that the object has been updated')
     def check_updated_object(self, expected_payload):
-        updated_without_id = self.json.copy()
-        updated_without_id.pop('id')
-        assert updated_without_id == expected_payload
+        self.check_response_matches_payload(expected_payload)
 
     @allure.step('Check status code after update')
     def check_status_code_after_update(self):

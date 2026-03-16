@@ -9,11 +9,8 @@ class CreateObject(BaseEndpoint):
     def create_new_object(self, payload):
         self.response = requests.post(self.url, json=payload)
         self.json = self.response.json()
-        self.json_response = self.response.json()
-        return self.json_response['id']
+        return self.json['id']
 
-    @allure.step('Checking that created object (without id) matches expected')
+    @allure.step('Checking that created object matches expected payload')
     def check_created_object_matches(self, payload):
-        response_without_id = self.json_response.copy()
-        response_without_id.pop('id')
-        assert response_without_id == payload
+        self.check_response_matches_payload(payload)
