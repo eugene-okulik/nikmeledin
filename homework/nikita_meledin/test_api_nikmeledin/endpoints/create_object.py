@@ -10,7 +10,3 @@ class CreateObject(BaseEndpoint):
         self.response = requests.post(self.url, json=payload)
         self.json = self.response.json()
         return self.json['id']
-
-    @allure.step('Checking that created object matches expected payload')
-    def check_created_object_matches(self, payload):
-        self.check_response_matches_payload(payload)

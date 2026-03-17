@@ -10,7 +10,3 @@ class PatchObject(BaseEndpoint):
         self.response = requests.patch(f'{self.url}/{object_id}', json=payload)
         self.json = self.response.json()
         return self.json
-
-    @allure.step('Checking that object was partially updated')
-    def check_patch_object(self, expected_payload):
-        self.check_response_matches_payload(expected_payload)
