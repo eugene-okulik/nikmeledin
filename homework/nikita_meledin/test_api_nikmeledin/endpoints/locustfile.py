@@ -4,6 +4,7 @@ import random
 
 EXISTING_IDS = [4985, 5098, 5099, 5164, 5304]
 
+
 class ObjectUser(HttpUser):
     host = "http://objapi.course.qa-practice.com"
 
