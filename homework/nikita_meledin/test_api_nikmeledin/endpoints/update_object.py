@@ -13,7 +13,3 @@ class UpdateObject(BaseEndpoint):
         else:
             self.json = None
         return self.response
-
-    @allure.step('Check status code after update')
-    def check_status_code_after_update(self):
-        assert self.response.status_code == 200
